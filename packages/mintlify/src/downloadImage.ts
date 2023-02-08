@@ -62,7 +62,7 @@ export function isValidImageSrc(
   const imageHref = removeMetadataFromImageSrc(src);
   const ext = getFileExtension(imageHref);
 
-  if (!SUPPORTED_MEDIA_EXTENSIONS.includes(ext)) {
+  if (ext && !SUPPORTED_MEDIA_EXTENSIONS.includes(ext)) {
     console.error("🚨 We do not support the file extension: " + ext);
     return false;
   }
