@@ -1,4 +1,3 @@
-// TODO: Put in the prebuild package
 import matter from "gray-matter";
 import isAbsoluteUrl from "is-absolute-url";
 import { remark } from "remark";
@@ -6,7 +5,7 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import { visit } from "unist-util-visit";
-import type { OpenApiFile } from "./types.js";
+import type { Root } from "mdast";
 
 const createPage = async (
   pagePath: string,
@@ -49,11 +48,14 @@ const createPage = async (
   };
 };
 
-const preParseMdx = async (fileContent, contentDirectoryPath) => {
-  const removeContentDirectoryPath = (filePath) => {
+const preParseMdx = async (
+  fileContent: string,
+  contentDirectoryPath: string
+) => {
+  const removeContentDirectoryPath = (filePath: string) => {
     const pathArr = createPathArr(filePath);
     const contentDirectoryPathArr = createPathArr(contentDirectoryPath);
-    contentDirectoryPathArr.reverse().forEach((dir, index) => {
+    contentDirectoryPathArr.reverse().forEach((dir: string, index: number) => {
       if (pathArr[index] === dir) {
         pathArr.pop();
       }
@@ -62,11 +64,8 @@ const preParseMdx = async (fileContent, contentDirectoryPath) => {
   };
 
   const removeContentDirectoryPaths = () => {
-    return (tree) => {
+    return (tree: Root) => {
       visit(tree, (node) => {
-        if (node == null) {
-          return;
-        }
         if (node.name === "img" || node.name === "source") {
           const srcAttrIndex = node.attributes.findIndex(
             (attr) => attr?.name === "src"
@@ -104,16 +103,16 @@ const preParseMdx = async (fileContent, contentDirectoryPath) => {
   return String(file);
 };
 
-const removeLeadingSlash = (str) => {
+const removeLeadingSlash = (str: string) => {
   const path = createPathArr(str);
   return path.join("/");
 };
 
-const createPathArr = (path) => {
+const createPathArr = (path: string) => {
   return path.split("/").filter((dir) => dir !== "");
 };
 
-const isDataString = (str) => str.startsWith("data:");
+const isDataString = (str: string) => str.startsWith("data:");
 
 const getOpenApiTitleAndDescription = (openApiFiles, openApiMetaField) => {
   if (openApiFiles == null || !openApiMetaField || openApiMetaField == null) {
