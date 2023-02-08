@@ -1,10 +1,8 @@
 import date from 'date-and-time';
-import { useContext } from 'react';
 
-import { ConfigContext } from '@/context/ConfigContext';
 import { useCurrentPath } from '@/hooks/useCurrentPath';
 import { PageMetaTags } from '@/types/metadata';
-import { UserFeedback } from '@/ui/Feedback';
+import { UserFeedback } from '@/ui/Feedback/Feedback';
 import { slugToTitle } from '@/utils/titleText/slugToTitle';
 
 import { AuthorProfile } from '../Blog';
@@ -51,7 +49,6 @@ type PageHeaderProps = {
 };
 
 export function PageHeader({ section, pageMetadata }: PageHeaderProps) {
-  const { subdomain } = useContext(ConfigContext);
   const currentPath = useCurrentPath();
   const title = pageMetadata.title || slugToTitle(currentPath);
   const { description } = pageMetadata;
@@ -68,9 +65,7 @@ export function PageHeader({ section, pageMetadata }: PageHeaderProps) {
               </p>
             )}
           </div>
-          {/* TODO: Make UserFeedback work in self-hosting
-          https://github.com/mintlify/mint/issues/118 */}
-          {subdomain && <UserFeedback />}
+          <UserFeedback />
         </div>
         <div className="flex items-center">
           <h1 className="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
