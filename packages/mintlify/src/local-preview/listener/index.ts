@@ -3,7 +3,7 @@ import fse from "fs-extra";
 import pathUtil from "path";
 import Chalk from "chalk";
 import mintValidation from "@mintlify/validation";
-import { isFileSizeValid, openApiCheck } from "./utils.js";
+import { isFileSizeValid, openApiCheck, isError } from "./utils.js";
 import { updateGeneratedNav, updateOpenApiFiles } from "./update.js";
 import { CLIENT_PATH, CMD_EXEC_PATH } from "../../constants.js";
 import { promises as _promises } from "fs";
@@ -40,8 +40,10 @@ const listener = () => {
             console.log("Static file added: ", filename);
             break;
         }
-      } catch (error) {
-        console.error(error.message);
+      } catch (error: unknown) {
+        if (isError(error)) {
+          console.error((error as Error).message);
+        }
       }
     })
     .on("change", async (filename: string) => {
@@ -64,8 +66,10 @@ const listener = () => {
             console.log("Static file edited: ", filename);
             break;
         }
-      } catch (error) {
-        console.error(error.message);
+      } catch (error: unknown) {
+        if (isError(error)) {
+          console.error((error as Error).message);
+        }
       }
     })
     .on("unlink", async (filename: string) => {
@@ -101,8 +105,10 @@ const listener = () => {
             console.log("Static file deleted: ", filename);
             break;
         }
-      } catch (error) {
-        console.error(error.message);
+      } catch (error: unknown) {
+        if (isError(error)) {
+          console.error((error as Error).message);
+        }
       }
     });
 };
@@ -181,15 +187,18 @@ const onUpdateEvent = async (filename: string): Promise<FileCategory> => {
         if (status === "success") {
           await fse.copy(filePath, targetPath);
         }
-      } catch (error) {
-        if (error.name === "SyntaxError") {
-          console.error(
-            `🚨 ${Chalk.red(
-              "mint.json has invalid JSON. You are likely missing a comma or a bracket. You can paste your mint.json file into https://jsonlint.com/ to get a more specific error message."
-            )}`
-          );
-        } else {
-          console.error(`🚨 ${Chalk.red(error.message)}`);
+      } catch (error: unknown) {
+        if (isError(error)) {
+          const errorObj = error as Error;
+          if (errorObj.name === "SyntaxError") {
+            console.error(
+              `🚨 ${Chalk.red(
+                "mint.json has invalid JSON. You are likely missing a comma or a bracket. You can paste your mint.json file into https://jsonlint.com/ to get a more specific error message."
+              )}`
+            );
+          } else {
+            console.error(`🚨 ${Chalk.red(errorObj.message)}`);
+          }
         }
       }
 
