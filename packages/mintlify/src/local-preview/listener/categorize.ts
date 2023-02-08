@@ -5,20 +5,22 @@ import { getFileExtension, openApiCheck, getFileList } from "./utils.js";
 import { PotentialFileCategory } from "./utils/types.js";
 
 export const categorizeFiles = async (contentDirectoryPath: string) => {
-  const allFilesInCmdExecutionPath = await getFileList(contentDirectoryPath);
-  const contentFilenames = [];
-  const staticFilenames = [];
-  const promises = [];
-  const openApiFiles = [];
-  const snippets = [];
-  allFilesInCmdExecutionPath.forEach((filename) => {
+  const allFilesInCmdExecutionPath: string[] = await getFileList(
+    contentDirectoryPath
+  );
+  const contentFilenames: string[] = [];
+  const staticFilenames: string[] = [];
+  const promises: Promise<void>[] = [];
+  const openApiFiles: OpenApiFile[] = [];
+  const snippetFilenames: string[] = [];
+  allFilesInCmdExecutionPath.forEach((filename: string) => {
     promises.push(
       (async () => {
         const extension = getFileExtension(filename);
         let isOpenApi = false;
         if (extension && (extension === "mdx" || extension === "md")) {
           if (filename.startsWith("/_snippets")) {
-            snippets.push(filename);
+            snippetFilenames.push(filename);
           } else {
             contentFilenames.push(filename);
           }
@@ -46,7 +48,7 @@ export const categorizeFiles = async (contentDirectoryPath: string) => {
   });
   await Promise.all(promises);
 
-  return { contentFilenames, staticFilenames, openApiFiles, snippets };
+  return { contentFilenames, staticFilenames, openApiFiles, snippetFilenames };
 };
 
 const excludedMdFiles = ["readme", "license", "contributing", "contribute"];
