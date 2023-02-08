@@ -27,3 +27,8 @@ type ScrapeSectionFn = (
   overwrite: boolean,
   version: string | undefined
 ) => Promise<MintNavigationEntry[]>;
+
+type OpenApiFile = {
+  filename: string;
+  spec: any;
+};
