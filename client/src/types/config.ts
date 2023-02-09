@@ -16,7 +16,6 @@ export function isNavigation(navigation: Navigation | NavigationEntry): navigati
   );
 }
 
-
 type Logo = string | { light: string; dark: string; href?: string };
 
 type NavbarLink = {
@@ -27,7 +26,14 @@ type NavbarLink = {
 
 export type TopbarCta = NavbarLink;
 
-export type IconType = 'brands' | 'duotone' | 'light' | 'regular' | 'sharp-solid' | 'solid' | 'thin';
+export type IconType =
+  | 'brands'
+  | 'duotone'
+  | 'light'
+  | 'regular'
+  | 'sharp-solid'
+  | 'solid'
+  | 'thin';
 
 export type Anchor = {
   name: string;

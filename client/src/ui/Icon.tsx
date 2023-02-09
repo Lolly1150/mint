@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+
 import { IconType } from '@/types/config';
 
 type IconProps = {
