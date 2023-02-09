@@ -16,6 +16,7 @@ export function isNavigation(navigation: Navigation | NavigationEntry): navigati
   );
 }
 
+
 type Logo = string | { light: string; dark: string; href?: string };
 
 type NavbarLink = {
@@ -26,14 +27,16 @@ type NavbarLink = {
 
 export type TopbarCta = NavbarLink;
 
+export type IconType = 'brands' | 'duotone' | 'light' | 'regular' | 'sharp-solid' | 'solid' | 'thin';
+
 export type Anchor = {
   name: string;
   url: string;
   icon?: string;
+  iconType?: IconType;
   color?: string | Gradient;
   isDefaultHidden?: boolean;
   version?: string;
-  iconType?: 'brands' | 'duotone' | 'light' | 'regular' | 'sharp-solid' | 'solid' | 'thin'
 };
 
 // To deprecate array types
