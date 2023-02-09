@@ -33,6 +33,7 @@ export type Anchor = {
   color?: string | Gradient;
   isDefaultHidden?: boolean;
   version?: string;
+  iconType?: 'brands' | 'duotone' | 'light' | 'regular' | 'sharp-solid' | 'solid' | 'thin'
 };
 
 // To deprecate array types
