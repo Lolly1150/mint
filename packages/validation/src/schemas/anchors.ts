@@ -32,7 +32,7 @@ export const anchorsSchema = z
         errorMap: () => {
           return {
             message:
-              "anchor iconType must be a string equal to one of: brands, duotone, light, sharp-solid, solid, thin",
+              "anchor iconType must be one of the following strings: brands, duotone, light, sharp-solid, solid, thin",
           };
         },
       })
