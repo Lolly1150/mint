@@ -1684,10 +1684,10 @@
     "@types/mdx" "^2.0.0"
     "@types/react" ">=16"
 
-"@mintlify/components@^0.3.6":
-  version "0.3.6"
-  resolved "https://registry.npmjs.org/@mintlify/components/-/components-0.3.6.tgz#f34024e3ee1d5d33bc645d36580cf9c2b61e9f46"
-  integrity sha512-boAbNaUdUz1USH3UWpmGyZTiusB1BZqzrjA1JJ+k2/+QzarkTQAwuuouuHTF1t2NGcSiumfeZt/vaKzASASNxA==
+"@mintlify/components@^0.3.9":
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/@mintlify/components/-/components-0.3.9.tgz#55cba3462cc3f22d50639b2447c5c76620a101a3"
+  integrity sha512-+Zce/OJkP4pkAsjh0ZrxE/Hh/emKm286Un9MewqnhPs1PX4rxPk7uMD2TJxJTrcKp85ZpPrCusHaBOMlEq5qmQ==
   dependencies:
     "@headlessui/react" "^1.7.7"
     assert "^2.0.0"
@@ -5276,6 +5276,18 @@ eslint-plugin-testing-library@^5.0.1:
   integrity sha512-6BQp3tmb79jLLasPHJmy8DnxREe+2Pgf7L+7o09TSWPfdqqtQfRZmZNetr5mOs3yqZk/MRNxpN3RUpJe0wB4LQ==
   dependencies:
     "@typescript-eslint/utils" "^5.13.0"
+
+eslint-plugin-unused-imports@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unused-imports/-/eslint-plugin-unused-imports-2.0.0.tgz#d8db8c4d0cfa0637a8b51ce3fd7d1b6bc3f08520"
+  integrity sha512-3APeS/tQlTrFa167ThtP0Zm0vctjr4M44HMpeg1P4bK6wItarumq0Ma82xorMKdFsWpphQBlRPzw/pxiVELX1A==
+  dependencies:
+    eslint-rule-composer "^0.3.0"
+
+eslint-rule-composer@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz#79320c927b0c5c0d3d3d2b76c8b4a488f25bbaf9"
+  integrity sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==
 
 eslint-scope@5.1.1, eslint-scope@^5.1.1:
   version "5.1.1"

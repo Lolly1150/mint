@@ -7,7 +7,7 @@ import { ConfigContext } from '@/context/ConfigContext';
 import { useCurrentPath } from '@/hooks/useCurrentPath';
 import { Group, GroupPage, isGroup, PageMetaTags } from '@/types/metadata';
 import { extractMethodAndEndpoint } from '@/utils/api';
-import { getTitle } from '@/utils/getAllMetaTags';
+import { getSidebarTitle } from '@/utils/getAllMetaTags';
 import { isPathInGroupPages } from '@/utils/nav';
 import { getMethodDotsColor } from '@/utils/openApiColors';
 import { isPathInGroup } from '@/utils/paths/isPathInGroup';
@@ -42,7 +42,7 @@ const NavItem = forwardRef(function NavItemWithRef(
 
   const isActive = isEqualIgnoringLeadingSlash(href, currentPath);
   const endpointStr = pageApi || openapi;
-  const title = getTitle(groupPage);
+  const title = getSidebarTitle(groupPage);
 
   return (
     <li ref={ref}>
