@@ -47,7 +47,7 @@ describe("anchorsSchema", () => {
       { name: "a1", url: "someRandomUrl", iconType: "invalid" },
     ]);
     expect(data.error.errors[0].message).toEqual(
-      "anchor iconType must be a string equal to one of: brands, duotone, light, sharp-solid, solid, thin"
+      "anchor iconType must be one of the following strings: brands, duotone, light, sharp-solid, solid, thin"
     );
     expect(data.success).toEqual(false);
   });
