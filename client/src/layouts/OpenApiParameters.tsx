@@ -145,6 +145,13 @@ function ExpandableFields({ schema }: any) {
                         </Expandable>
                       </div>
                     )}
+                    {value.allOf && (
+                      <Expandable title="properties">
+                        <ExpandableFields
+                          schema={combineAllOfIntoObject(value.allOf)}
+                        ></ExpandableFields>
+                      </Expandable>
+                    )}
                     {value.items?.allOf && (
                       <Expandable title="properties">
                         <ExpandableFields
@@ -205,7 +212,11 @@ export function OpenApiParameters({ endpointStr }: { endpointStr: string }) {
 
   const bodyContent = operation.requestBody?.content;
   const contentType = bodyContent && Object.keys(bodyContent)[0];
-  const bodySchema = bodyContent && bodyContent[contentType]?.schema;
+  let bodySchema = bodyContent && bodyContent[contentType]?.schema;
+
+  if (bodySchema?.allOf) {
+    bodySchema = combineAllOfIntoObject(bodySchema.allOf);
+  }
 
   const Body =
     bodySchema?.properties &&
