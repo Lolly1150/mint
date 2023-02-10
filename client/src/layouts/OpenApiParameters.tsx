@@ -11,18 +11,17 @@ import { ConfigContext } from '@/context/ConfigContext';
 import { ApiComponent } from '@/ui/ApiPlayground';
 import { getOpenApiOperationMethodAndEndpoint } from '@/utils/openApi/getOpenApiContext';
 import { getParameterType } from '@/utils/openApi/getParameterType';
-import { createExpandable, createParamField, getProperties } from '@/utils/openapi';
+import {
+  combineAllOfIntoObject,
+  createExpandable,
+  createParamField,
+  getAllOpenApiParameters,
+  getProperties,
+  getTypeName,
+} from '@/utils/openapi';
 
 const MarkdownComponents = {
   p: (props: any) => <p className="m-0" {...props} />,
-};
-
-export const getAllOpenApiParameters = (path: any, operation: any) => {
-  return (path.parameters || []).concat(operation.parameters || []);
-};
-
-const getTypeName = (type: string[] | string) => {
-  return Array.isArray(type) ? type.join(' | ') : type;
 };
 
 const getEnumDescription = (enumArray?: string[]): React.ReactNode | null => {
@@ -145,6 +144,13 @@ function ExpandableFields({ schema }: any) {
                           <ExpandableFields schema={value}></ExpandableFields>
                         </Expandable>
                       </div>
+                    )}
+                    {value.items?.allOf && (
+                      <Expandable title="properties">
+                        <ExpandableFields
+                          schema={combineAllOfIntoObject(value.items.allOf)}
+                        ></ExpandableFields>
+                      </Expandable>
                     )}
                     {value.enum && Array.isArray(value.enum) && (
                       <div className="whitespace-pre-wrap">

@@ -20,11 +20,16 @@ import { TableOfContents } from '@/ui/MDXContentController/TableOfContents';
 import { getParamGroupsFromApiComponents } from '@/utils/api';
 import { getOpenApiOperationMethodAndEndpoint } from '@/utils/openApi/getOpenApiContext';
 import { getParameterType } from '@/utils/openApi/getParameterType';
-import { createExpandable, createParamField, getProperties } from '@/utils/openapi';
+import {
+  createExpandable,
+  createParamField,
+  getAllOpenApiParameters,
+  getProperties,
+} from '@/utils/openapi';
 import { getSectionTitle } from '@/utils/paths/getSectionTitle';
 
 import { GeneratedRequestExamples, OpenApiResponseExample } from '../../layouts/ApiSupplemental';
-import { getAllOpenApiParameters, OpenApiParameters } from '../../layouts/OpenApiParameters';
+import { OpenApiParameters } from '../../layouts/OpenApiParameters';
 import { BlogContext } from '../Blog';
 import { createUserDefinedExamples } from './createUserDefinedExamples';
 
