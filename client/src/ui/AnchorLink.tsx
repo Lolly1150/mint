@@ -96,6 +96,7 @@ export function StyledAnchorLink({
         as={as}
         href={href ?? '/'}
         icon={AnchorIcon}
+        iconType={iconType}
         isActive={isActive}
         color={color}
       >
