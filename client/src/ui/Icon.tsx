@@ -4,7 +4,7 @@ import { IconType } from '@/types/config';
 
 type IconProps = {
   icon: string;
-  iconType?: IconType;
+  iconType?: IconType | string;
   className?: string;
   color?: string;
   overrideColor?: boolean;

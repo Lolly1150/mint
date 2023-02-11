@@ -14,7 +14,7 @@ type TopLevelProps = {
   color?: string;
   onClick?: (el: any) => void;
   icon?: any;
-  iconType?: IconType;
+  iconType?: IconType | string;
   shadow?: string;
   mobile?: boolean;
   name?: string;
