@@ -216,6 +216,16 @@ export const configSchema = z.object({
             invalid_type_error: "topAnchor.icon must be a string",
           })
           .optional(),
+            iconType: z
+      .enum(["brands", "duotone", "light", "sharp-solid", "solid", "thin"], {
+        errorMap: () => {
+          return {
+            message:
+              "anchor iconType must be one of the following strings: brands, duotone, light, sharp-solid, solid, thin",
+          };
+        },
+      })
+      .optional(),
       },
       {
         invalid_type_error:
