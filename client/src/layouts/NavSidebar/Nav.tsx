@@ -55,7 +55,7 @@ function TopLevelNav({ mobile }: { mobile: boolean }) {
         className="mb-4"
         color={colors.anchors[0]}
         icon={config?.topAnchor?.icon || 'book-open'}
-        iconType={config?.anchors?.[4]?.iconType || 'duotone'}
+        iconType={config?.topAnchor?.iconType || 'duotone'}
         name={config?.topAnchor?.name ?? 'Documentation'}
       ></StyledAnchorLink>
       {config?.anchors &&

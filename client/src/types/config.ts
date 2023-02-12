@@ -97,6 +97,7 @@ export type Config = {
     name: string;
     icon?: string;
     color?: string;
+    iconType: IconType;
   };
   repo?: {
     github?: {
