@@ -221,7 +221,7 @@ export const configSchema = z.object({
         errorMap: () => {
           return {
             message:
-              "anchor iconType must be one of the following strings: brands, duotone, light, sharp-solid, solid, thin",
+              "topAnchor.iconType must be one of the following strings: brands, duotone, light, sharp-solid, solid, thin",
           };
         },
       })
