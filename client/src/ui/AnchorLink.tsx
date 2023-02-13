@@ -82,7 +82,7 @@ export function StyledAnchorLink({
     ) : (
       <Icon
         icon={icon.toLowerCase()}
-        iconType={iconType ?? 'duotone'}
+        iconType={iconType || 'duotone'}
         className={clsx(
           `h-4 w-4 secondary-opacity group-hover:fill-primary-dark group-hover:bg-white`,
           isActive ? 'bg-white' : 'bg-zinc-400 dark:bg-zinc-500'
