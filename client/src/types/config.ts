@@ -125,7 +125,7 @@ export const findFirstNavigationEntry = (
 ): NavigationEntry | undefined => {
   return group.pages.find((page) => {
     if (typeof page === 'string') {
-      return page.includes(target);
+      return page.startsWith(target);
     } else {
       return findFirstNavigationEntry(page, target);
     }
